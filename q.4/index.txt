@@ -1,0 +1,83 @@
+// MongoDB commands for Databases 
+=> view all databases - show dbs 
+=> create a new or switch databases - use dbname 
+=> view current databases - db
+=> delete database - db.dropDatabase()
+
+//MongoDB commands for Collections
+=> show collections - show collections
+=> create a collection named 'comments' - db.createCollection('comments')
+=> Delete a collection named 'comments' - db.comments.drop()
+
+//MongoDB commands for Rows
+=> Insert 1 Rows - db.comments.insert({
+    'name' : 'A1meow',
+    'lang' : ['Javascript', 'python'],
+    'member_since' : 5
+})
+=> Insert Many Rows - db.comments.insertMany([{
+    'name' : 'A2',
+    'lang' : ['Javascript', 'python'],
+    'member_since' : 5
+},
+{
+    'name' : 'A3',
+    'lang' : ['Javascript', 'python'],
+    'member_since' : 5
+} 
+])
+=> Show all rows in a Collection - db.comments.find()
+=> Show all rows in a Collection (Prettified) - db.comments.find().pretty()
+
+//MongoDB commands for Search 
+=> db.comments.find({
+    lang: 'python'
+})
+
+//Limiting the Output
+=> db.comments.find().pretty().limit(2)
+
+//Counting the number of rows in the Output
+=> db.comments.find().pretty().limit(2).count()
+=> db.comments.find().pretty().count()
+=> db.comments.find({name: "aksh"}).count()
+
+//Sorting the number of rows in the Output basis of member_since
+=> db.comments.find().sort({member_since: 1}).pretty() -  Ascending
+=> db.comments.find().sort({member_since: -1}).pretty() -  Descending
+
+// Find the first row matching the object 
+=> db.comments.findOne({name: 'A1meow'})
+
+//Update a row
+=> db.comments.update({member_since: 51}, 
+{
+    name: 'meow',
+    member_since: 51
+}
+)
+=> db.comments.update({member_since: 514}, 
+{
+    name: 'meow',
+    member_since: 51
+}, {upsert: true})
+
+//MongoDb Increment Operator
+db.comments.update({name: 'meow'}, 
+{$inc:{
+    member_since: 2
+}}
+)
+
+//MongoDb Rename Operator
+db.comments.update({name: 'meow'}, 
+{$rename:{
+    member_since: 'member'
+}}
+)
+
+//Delete Row
+db.comments.remove({name: 'meow'})
+
+// Less than / Greater than / Less than or Eq/ Greater than or Eq 
+db.comments.find({member_since: {$lt : 90 }})

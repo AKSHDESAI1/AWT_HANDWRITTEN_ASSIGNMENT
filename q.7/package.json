@@ -1,0 +1,12 @@
+{
+  "name": "q.7",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "keywords": [],
+  "author": "aksh desai",
+  "license": "ISC"
+}
