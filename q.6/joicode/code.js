@@ -26,7 +26,7 @@ const schema = Joi.object({
     address: Joi.string()
 })
 
-module.defaults = schema;
+module.exports = schema;
 
 
 
